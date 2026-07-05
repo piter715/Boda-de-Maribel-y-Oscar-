@@ -2,326 +2,268 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Boda Maribel & Oscar</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower - Nuestra Pequeña Princesa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --esmeralda: #004d3d;
-            --dorado: linear-gradient(135deg, #b89241 0%, #dec57b 50%, #b89241 100%);
-            --dorado-solido: #b89241;
-            --oscuro: #1a1a1a;
-            --blanco: #ffffff;
+            --pink-light: #ffe4e1;
+            --pink-main: #ffb7c5;
+            --honey: #ffb900;
+            --brown: #704214;
+            --white: #fffaf0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
+        body {
+            background-color: #fdf5e6;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             overflow-x: hidden;
-            width: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--blanco);
-            scroll-behavior: smooth;
         }
 
-        /* --- MÚSICA --- */
-        #music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--esmeralda);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border: 1px solid var(--dorado-solido);
-        }
-
-        /* --- SECCIÓN INICIO CON IMAGEN Y NOMBRES --- */
-        #inicio {
-            height: 100vh;
+        /* Contenedor Principal */
+        .card {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            max-width: 450px;
+            background: var(--white);
             position: relative;
+            margin: 15px;
+            border-radius: 30px;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 8px solid #f2e3d5;
             text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Efecto de Abejas Flotantes */
+        .bee {
+            position: absolute;
+            width: 30px;
+            z-index: 10;
+            animation: fly 6s infinite ease-in-out;
+        }
+
+        @keyframes fly {
+            0%, 100% { transform: translate(0,0) rotate(0deg); }
+            50% { transform: translate(20px, -30px) rotate(15deg); }
+        }
+
+        /* Encabezado */
+        .header {
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            padding: 40px 20px;
+            border-bottom: 5px dashed var(--pink-main);
+        }
+
+        .header h2 {
+            font-size: 1.2rem;
+            color: var(--brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: var(--pink-main);
+            text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.05);
+            margin: 10px 0;
+        }
+
+        .subtitle {
+            background: var(--pink-main);
             color: white;
-        }
-
-        .hero-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Oscurece un poco la imagen para leer nombres */
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3; /* Por encima de la imagen y el overlay */
-            padding: 20px;
-            width: 100%;
-        }
-
-        .script-font {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.5rem, 15vw, 6rem); /* Tamaño gigante y elegante */
-            background: var(--dorado);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            display: block;
+            padding: 5px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.9rem;
             margin-bottom: 10px;
         }
 
-        .hero-content h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 5vw, 1.8rem);
-            letter-spacing: 4px;
-            font-weight: 400;
-        }
-
-        .gold-line {
-            width: 80px;
-            height: 2px;
-            background: var(--dorado);
-            margin: 20px auto;
-        }
-
-        /* --- CUENTA REGRESIVA --- */
-        #cuenta {
-            padding: 60px 15px;
-            background: var(--esmeralda);
-            color: white;
-            text-align: center;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .timer-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 15px 5px;
-            width: 75px;
-            border-radius: 8px;
-            border-bottom: 3px solid var(--dorado-solido);
-        }
-
-        .timer-item span {
+        .princess {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--pink-main);
             display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dorado-solido);
         }
 
-        /* --- INFORMACIÓN --- */
-        #detalles { padding: 60px 15px; text-align: center; }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 1000px;
-            margin: 40px auto;
+        /* Ilustración Central (Simulada) */
+        .illustration {
+            padding: 20px;
+            position: relative;
         }
 
-        @media (min-width: 768px) {
-            .info-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        .info-card {
+        .circle-frame {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 10px solid var(--pink-light);
             background: #fff;
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
         }
 
-        .btn-mapa {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: var(--esmeralda);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
+        /* Burbujas animadas */
+        .bubble {
+            position: absolute;
+            background: rgba(173, 216, 230, 0.4);
+            border-radius: 50%;
+            animation: bubbleUp 4s infinite;
         }
 
-        /* --- GALERÍA --- */
-        .gallery {
+        @keyframes bubbleUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+
+        /* Detalles del Evento */
+        .details {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 20px;
+            gap: 10px;
+            background: #fff9f0;
+        }
+
+        .info-box {
             padding: 10px;
         }
 
-        .gallery img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 8px;
+        .info-box span {
+            display: block;
+            font-weight: bold;
+            color: var(--brown);
         }
 
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            background-color: #f9f9f9;
-            color: var(--esmeralda);
+        .day { font-size: 1.5rem; color: var(--pink-main) !important; }
+        .location { grid-column: span 3; border-top: 1px solid #eee; padding-top: 15px; }
+
+        /* Sección Regalos */
+        .gifts {
+            background: #fdf2f4;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px dashed var(--pink-main);
         }
+
+        .gifts h3 {
+            font-family: 'Pacifico', cursive;
+            color: var(--pink-main);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px;
+            font-style: italic;
+            color: var(--brown);
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Botón de ubicación interactivo */
+        .map-btn {
+            background: var(--honey);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .map-btn:hover { transform: scale(1.05); background: #e6a700; }
+
     </style>
 </head>
 <body>
 
-    <!-- Música -->
-    <div id="music-control" onclick="toggleMusic()">
-        <i id="music-icon" class="fas fa-play"></i>
+    <div class="card">
+        <!-- Abejitas decorativas -->
+        <div class="bee" style="top: 10%; left: 10%;">🐝</div>
+        <div class="bee" style="top: 25%; right: 5%; animation-delay: 2s;">🐝</div>
+
+        <div class="header">
+            <h2>Te invitamos a un</h2>
+            <h1 class="main-title">Baby Shower</h1>
+            <div class="subtitle">EN HONOR A</div>
+            <span class="princess">nuestra pequeña princesa</span>
+        </div>
+
+        <div class="illustration">
+            <div class="circle-frame">
+                <!-- Aquí iría la imagen de Pooh y Piglet -->
+                🍯
+                <!-- Efecto de burbujas -->
+                <div class="bubble" style="width:20px; height:20px; left:20%; bottom:20%;"></div>
+                <div class="bubble" style="width:15px; height:15px; left:40%; bottom:10%; animation-delay: 1s;"></div>
+                <div class="bubble" style="width:25px; height:25px; right:30%; bottom:15%; animation-delay: 2s;"></div>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="info-box">
+                <small>DOMINGO</small>
+                <span class="day">26</span>
+                <small>DE JULIO</small>
+            </div>
+            <div class="info-box" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
+                <small>HORA</small>
+                <span style="font-size: 1.2rem; margin-top: 5px;">5:00 PM</span>
+                <span>🕒</span>
+            </div>
+            <div class="info-box">
+                <small>LUGAR</small>
+                <span style="font-size: 0.8rem; margin-top: 5px;">QUINTA PATY</span>
+                <span>📍</span>
+            </div>
+            <div class="location">
+                <p><strong>Dirección:</strong> Zaragoza Norte 413</p>
+                <a href="https://www.google.com/maps/search/Zaragoza+Norte+413" target="_blank" class="map-btn">Ver Ubicación</a>
+            </div>
+        </div>
+
+        <div class="gifts">
+            <h3>Lluvia de Regalos</h3>
+            <p>Pañales, ropa y accesorios para bebé</p>
+            <div style="font-size: 2rem;">🎁</div>
+        </div>
+
+        <div class="footer">
+            <p>Te esperamos para compartir este momento tan especial</p>
+        </div>
     </div>
-    <audio id="cancion" loop>
-        <source src="https://www.dropbox.com/scl/fi/lmfiqwvo2b2erburmefa1/a5496960_f7dc_4799_8a87_d45c05302862NA_140_audio_only_medium.m4a?rlkey=l5tq8j6d9lcmkitbugrxocjzk&st=klwmp9lp&dl=1" type="audio/mpeg">
-    </audio>
 
-    <!-- 1. INICIO: IMAGEN + NOMBRES -->
-    <section id="inicio">
-        <img src="https://i.ibb.co/XgWJqgr/Maribel-y-Oscar-19-de-septiembre-de-2026.png" class="hero-img">
-        <div class="overlay"></div>
-        
-        <div class="hero-content" data-aos="zoom-in">
-            <p style="letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 10px;">NUESTRA BODA</p>
-            <span class="script-font">Maribel & Oscar</span>
-            <div class="gold-line"></div>
-            <h1>19 SEPTIEMBRE 2026</h1>
-        </div>
-    </section>
-
-    <!-- 2. CUENTA REGRESIVA -->
-    <section id="cuenta">
-        <h2 style="font-family: 'Cinzel';">¡Ya falta poco!</h2>
-        <div class="timer" data-aos="fade-up">
-            <div class="timer-item"><span id="days">00</span><p style="font-size: 0.7rem;">Días</p></div>
-            <div class="timer-item"><span id="hours">00</span><p style="font-size: 0.7rem;">Horas</p></div>
-            <div class="timer-item"><span id="minutes">00</span><p style="font-size: 0.7rem;">Min</p></div>
-            <div class="timer-item"><span id="seconds">00</span><p style="font-size: 0.7rem;">Seg</p></div>
-        </div>
-    </section>
-
-    <!-- 3. DETALLES -->
-    <section id="detalles">
-        <h2 style="font-family: 'Cinzel';">Ubicaciones</h2>
-        <div class="gold-line"></div>
-
-        <div class="info-grid">
-            <div class="info-card" data-aos="fade-right">
-                <i class="fas fa-church" style="font-size: 2.2rem; color: var(--esmeralda); margin-bottom: 15px;"></i>
-                <h3 style="font-family: 'Cinzel';">Ceremonia Religiosa</h3>
-                <p style="margin: 10px 0;"><strong>7:00 PM</strong></p>
-                <p>Parroquia de San Francisco de Asís</p>
-                <p>San Francisco de Conchos, Chih.</p>
-                <a href="https://maps.app.goo.gl/TiUWuCDonyhTZqQi7?g_st=aw" target="_blank" class="btn-mapa">VER MAPA</a>
-            </div>
-
-            <div class="info-card" data-aos="fade-left">
-                <i class="fas fa-glass-cheers" style="font-size: 2.2rem; color: var(--esmeralda); margin-bottom: 15px;"></i>
-                <h3 style="font-family: 'Cinzel';">Recepción</h3>
-                <p style="margin: 10px 0;"><strong>Al finalizar la misa</strong></p>
-                <p>Salón de actos</p>
-                <p>San Francisco de Conchos, Chih.</p>
-                <a href="https://www.google.com/maps/search/Salón+de+actos+San+Francisco+de+Conchos" target="_blank" class="btn-mapa">VER MAPA</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. VESTIMENTA -->
-    <section style="background: #f1f5f4; padding: 60px 20px; text-align: center;">
-        <div data-aos="fade-up">
-            <i class="fas fa-user-tie" style="font-size: 2rem; color: var(--esmeralda);"></i>
-            <h2 style="font-family: 'Cinzel'; margin: 15px 0;">Código de Vestimenta</h2>
-            <p style="letter-spacing: 2px;"><strong>FORMAL</strong></p>
-            <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Damas: Vestido Largo / Caballeros: Traje</p>
-            <p style="margin-top: 15px; color: var(--esmeralda); font-size: 0.8rem; font-weight: bold;">* Reservamos el color blanco para la novia.</p>
-        </div>
-    </section>
-
-    <!-- 5. GALERÍA -->
-    <section id="fotos" style="padding: 60px 0;">
-        <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Cinzel';">Nuestros Momentos</h2>
-        <div class="gallery">
-            <img src="https://i.ibb.co/YFk0B61C/IMG-20260704-WA0011.jpg">
-            <img src="https://i.ibb.co/GfxG5TYw/IMG-20260704-WA0010.jpg">
-            <img src="https://i.ibb.co/0y6wXDrZ/IMG-20260704-WA0009.jpg">
-            <img src="https://i.ibb.co/Xxy7fXXN/IMG-20260704-WA0012.jpg">
-        </div>
-    </section>
-
-    <footer>
-        Maribel & Oscar
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-
-        // Cuenta Regresiva
-        const targetDate = new Date("September 19, 2026 19:00:00").getTime();
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            if (diff <= 0) return;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = d.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // Música
-        const audio = document.getElementById("cancion");
-        const icon = document.getElementById("music-icon");
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-                icon.classList.replace("fa-play", "fa-pause");
-            } else {
-                audio.pause();
-                icon.classList.replace("fa-pause", "fa-play");
-            }
+        // Efecto simple para crear más abejas al azar
+        for (let i = 0; i < 5; i++) {
+            let bee = document.createElement('div');
+            bee.className = 'bee';
+            bee.innerHTML = '🐝';
+            bee.style.left = Math.random() * 90 + '%';
+            bee.style.top = Math.random() * 90 + '%';
+            bee.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            bee.style.animationDelay = Math.random() * 5 + 's';
+            document.querySelector('.card').appendChild(bee);
         }
     </script>
 </body>
