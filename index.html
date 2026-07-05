@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Maribel & Oscar</title>
+    
+    <!-- Fuentes Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --esmeralda: #006b54; /* Verde Esmeralda Profesional */
+            --esmeralda-claro: #e6f0ee;
+            --dorado: #b89241;
+            --oscuro: #1a1a1a;
+            --blanco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco);
+            color: var(--oscuro);
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--esmeralda);
+        }
+
+        section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        /* --- BOTÓN MÚSICA --- */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--esmeralda);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* --- SECCIÓN 1: BIENVENIDA (HERO) --- */
+        #inicio {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://i.ibb.co/Xxy7fXXN/IMG-20260704-WA0012.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        #inicio h1 {
+            font-size: 3.5rem;
+            margin: 20px 0;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* --- SECCIÓN 2: CUENTA REGRESIVA --- */
+        #cuenta {
+            background-color: var(--esmeralda-claro);
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .timer-item {
+            background: white;
+            padding: 20px;
+            min-width: 90px;
+            border-radius: 8px;
+            border-bottom: 4px solid var(--esmeralda);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timer-item span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--esmeralda);
+        }
+
+        /* --- SECCIÓN 3: INFORMACIÓN Y UBICACIÓN --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .info-card {
+            padding: 40px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            transition: 0.3s;
+            background: white;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 10px 30px rgba(0,107,84,0.1);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            color: var(--esmeralda); /* Iconos en Verde Esmeralda */
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 15px;
+            color: var(--oscuro);
+        }
+
+        .btn-mapa {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--esmeralda);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        /* --- SECCIÓN 4: GALERÍA --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: 0.4s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            #inicio h1 { font-size: 2.5rem; }
+            .timer { gap: 10px; }
+            .timer-item { min-width: 70px; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Música -->
+    <div id="music-control" onclick="toggleMusic()">
+        <i id="music-icon" class="fas fa-play"></i>
+    </div>
+    <audio id="cancion" loop>
+        <source src="https://www.dropbox.com/scl/fi/lmfiqwvo2b2erburmefa1/a5496960_f7dc_4799_8a87_d45c05302862NA_140_audio_only_medium.m4a?rlkey=l5tq8j6d9lcmkitbugrxocjzk&st=klwmp9lp&dl=1" type="audio/mpeg">
+    </audio>
+
+    <!-- 1. SECCIÓN INICIO -->
+    <section id="inicio">
+        <p>Nuestra Boda</p>
+        <span class="script-font">Maribel & Oscar</span>
+        <h1>19.09.2026</h1>
+        <p>¡Acompáñanos!</p>
+    </section>
+
+    <!-- 2. SECCIÓN CUENTA REGRESIVA -->
+    <section id="cuenta">
+        <h2>Solo faltan...</h2>
+        <div class="timer">
+            <div class="timer-item"><span id="days">00</span>Días</div>
+            <div class="timer-item"><span id="hours">00</span>Hs</div>
+            <div class="timer-item"><span id="minutes">00</span>Min</div>
+            <div class="timer-item"><span id="seconds">00</span>Seg</div>
+        </div>
+    </section>
+
+    <!-- 3. SECCIÓN INFORMACIÓN -->
+    <section id="detalles">
+        <h2 style="margin-bottom: 10px;">Detalles del Evento</h2>
+        <div style="width: 50px; height: 3px; background: var(--esmeralda); margin: 0 auto 50px;"></div>
+
+        <div class="info-grid">
+            <!-- Ceremonia -->
+            <div class="info-card">
+                <i class="fas fa-church"></i>
+                <h3>Ceremonia Religiosa</h3>
+                <p><strong>7:00 PM</strong></p>
+                <p>Parroquia de San Francisco de Asís</p>
+                <p>San Francisco de Conchos, Chih.</p>
+                <a href="https://maps.app.goo.gl/TiUWuCDonyhTZqQi7?g_st=aw" target="_blank" class="btn-mapa">VER UBICACIÓN</a>
+            </div>
+
+            <!-- Recepción -->
+            <div class="info-card">
+                <i class="fas fa-glass-cheers"></i>
+                <h3>Recepción</h3>
+                <p>Después de la ceremonia</p>
+                <p><strong>Salón de actos</strong></p>
+                <p>San Francisco de Conchos, Chih.</p>
+                <a href="https://www.google.com/maps/search/Salón+de+actos+San+Francisco+de+Conchos" target="_blank" class="btn-mapa">VER UBICACIÓN</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECCIÓN GALERÍA -->
+    <section id="fotos">
+        <h2 style="margin-bottom: 40px;">Nuestra Galería</h2>
+        <div class="gallery">
+            <img src="https://i.ibb.co/YFk0B61C/IMG-20260704-WA0011.jpg" alt="Foto 1">
+            <img src="https://i.ibb.co/GfxG5TYw/IMG-20260704-WA0010.jpg" alt="Foto 2">
+            <img src="https://i.ibb.co/0y6wXDrZ/IMG-20260704-WA0009.jpg" alt="Foto 3">
+            <img src="https://i.ibb.co/Xxy7fXXN/IMG-20260704-WA0012.jpg" alt="Foto 4">
+        </div>
+        <p style="margin-top: 60px; font-style: italic; color: #888;">Hecho con amor para Maribel & Oscar</p>
+    </section>
+
+    <script>
+        // --- CUENTA REGRESIVA ---
+        const targetDate = new Date("September 19, 2026 19:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d;
+            document.getElementById("hours").innerText = h;
+            document.getElementById("minutes").innerText = m;
+            document.getElementById("seconds").innerText = s;
+        }, 1000);
+
+        // --- MÚSICA ---
+        const audio = document.getElementById("cancion");
+        const icon = document.getElementById("music-icon");
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                icon.classList.replace("fa-play", "fa-pause");
+            } else {
+                audio.pause();
+                icon.classList.replace("fa-pause", "fa-play");
+            }
+        }
+    </script>
+</body>
+</html>
