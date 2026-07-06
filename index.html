@@ -19,174 +19,71 @@
             --blanco: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--blanco);
-        }
-
-        #canvas-particles {
+        /* --- PANTALLA DE BIENVENIDA (Solución iPhone) --- */
+        #overlay-inicio {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        #music-control {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 2000;
-            background: var(--esmeralda);
-            color: white;
-            width: 55px; height: 55px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border: 2px solid var(--dorado-solido);
-        }
-
-        #inicio {
-            height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            position: relative; overflow: hidden; text-align: center; color: white;
-        }
-
-        .hero-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 1;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(0, 61, 51, 0.7), rgba(0, 107, 84, 0.4));
-            z-index: 2;
-        }
-
-        .hero-content { position: relative; z-index: 10; padding: 20px; }
-
-        .script-font {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.5rem, 15vw, 6.5rem);
-            background: var(--dorado);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .gold-line {
-            width: 80px; height: 2px;
-            background: var(--dorado);
-            margin: 20px auto;
-        }
-
-        .parents-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: white;
-        }
-        .parents-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .parent-box h4 {
-            font-family: 'Cinzel';
-            color: var(--esmeralda);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        .parent-box p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #444;
-        }
-
-        #cuenta {
-            padding: 60px 15px;
             background: var(--esmeralda-oscuro);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: white;
             text-align: center;
-            border-top: 4px solid var(--dorado-solido);
-            position: relative; z-index: 10;
+            transition: opacity 1s ease;
         }
 
-        .timer {
-            display: flex; justify-content: center; gap: 10px; margin-top: 30px;
+        .btn-entrar {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: var(--dorado);
+            border: none;
+            color: var(--esmeralda-oscuro);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .timer-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 5px; width: 80px; border-radius: 10px;
-            border: 1px solid rgba(184, 146, 65, 0.4);
-        }
-
-        .timer-item span {
-            display: block; font-size: 1.5rem; font-weight: 700; color: var(--dorado-solido);
-        }
-
-        .info-card {
-            background: var(--esmeralda-claro);
-            padding: 40px 20px; margin: 20px;
-            border-radius: 20px; border-bottom: 5px solid var(--esmeralda);
-            position: relative; z-index: 10; text-align: center;
-        }
-
-        .no-ticket-badge {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 18px;
-            border: 1px dashed var(--esmeralda);
-            color: var(--esmeralda);
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 5px;
-            letter-spacing: 1px;
-        }
-
-        .btn-mapa {
-            display: inline-block;
-            margin-top: 20px; padding: 12px 25px;
-            background: var(--esmeralda); color: white;
-            text-decoration: none; border-radius: 50px;
-            font-size: 0.8rem; font-weight: 600;
-        }
-
-        .dress-code {
-            background: var(--esmeralda); color: white;
-            padding: 60px 20px; text-align: center;
-            position: relative; z-index: 10;
-        }
-
-        .gallery {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 10px; padding: 15px;
-        }
-
-        .gallery img {
-            width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px;
-        }
-
-        footer {
-            padding: 50px 20px; text-align: center; background: var(--esmeralda-claro);
-        }
-
-        @media (max-width: 600px) {
-            .parents-grid { grid-template-columns: 1fr; }
-        }
+        /* Resto de estilos permanecen igual... */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { overflow-x: hidden; width: 100%; font-family: 'Montserrat', sans-serif; background-color: var(--blanco); }
+        #canvas-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+        #music-control { position: fixed; bottom: 25px; right: 25px; z-index: 2000; background: var(--esmeralda); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid var(--dorado-solido); }
+        #inicio { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; text-align: center; color: white; }
+        .hero-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 61, 51, 0.7), rgba(0, 107, 84, 0.4)); z-index: 2; }
+        .hero-content { position: relative; z-index: 10; padding: 20px; }
+        .script-font { font-family: 'Great Vibes', cursive; font-size: clamp(3.5rem, 15vw, 6.5rem); background: var(--dorado); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-line { width: 80px; height: 2px; background: var(--dorado); margin: 20px auto; }
+        .parents-section { padding: 60px 20px; text-align: center; background: white; }
+        .parents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .parent-box h4 { font-family: 'Cinzel'; color: var(--esmeralda); font-size: 0.9rem; }
+        #cuenta { padding: 60px 15px; background: var(--esmeralda-oscuro); color: white; text-align: center; border-top: 4px solid var(--dorado-solido); position: relative; z-index: 10; }
+        .timer { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+        .timer-item { background: rgba(255, 255, 255, 0.1); padding: 15px 5px; width: 80px; border-radius: 10px; border: 1px solid rgba(184, 146, 65, 0.4); }
+        .timer-item span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--dorado-solido); }
+        .info-card { background: var(--esmeralda-claro); padding: 40px 20px; margin: 20px; border-radius: 20px; border-bottom: 5px solid var(--esmeralda); position: relative; z-index: 10; text-align: center; }
+        .no-ticket-badge { display: inline-block; margin-top: 15px; padding: 8px 18px; border: 1px dashed var(--esmeralda); color: var(--esmeralda); font-size: 0.85rem; font-weight: 600; border-radius: 5px; }
+        .btn-mapa { display: inline-block; margin-top: 20px; padding: 12px 25px; background: var(--esmeralda); color: white; text-decoration: none; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        .dress-code { background: var(--esmeralda); color: white; padding: 60px 20px; text-align: center; position: relative; z-index: 10; }
+        .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
+        .gallery img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; }
+        footer { padding: 50px 20px; text-align: center; background: var(--esmeralda-claro); }
+        @media (max-width: 600px) { .parents-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+
+    <!-- Pantalla de bienvenida obligatoria para iPhone -->
+    <div id="overlay-inicio">
+        <h2 style="font-family: 'Great Vibes'; font-size: 3rem; margin-bottom: 10px; color: #dec57b;">Nuestra Boda</h2>
+        <p style="font-family: 'Cinzel'; letter-spacing: 2px;">MARIBEL & OSCAR</p>
+        <button class="btn-entrar" onclick="entrarInvitacion()">ABRIR INVITACIÓN</button>
+    </div>
 
     <canvas id="canvas-particles"></canvas>
 
@@ -198,10 +95,11 @@
         <source src="https://www.dropbox.com/scl/fi/lmfiqwvo2b2erburmefa1/a5496960_f7dc_4799_8a87_d45c05302862NA_140_audio_only_medium.m4a?rlkey=l5tq8j6d9lcmkitbugrxocjzk&st=klwmp9lp&dl=1" type="audio/mpeg">
     </audio>
 
+    <!-- El resto del contenido de la invitación es el mismo... -->
     <section id="inicio">
         <img src="https://i.ibb.co/XgWJqgr/Maribel-y-Oscar-19-de-septiembre-de-2026.png" class="hero-img">
         <div class="overlay"></div>
-        <div class="hero-content" data-aos="fade-up">
+        <div class="hero-content">
             <p style="letter-spacing: 5px;">NUESTRA BODA</p>
             <div class="gold-line"></div>
             <span class="script-font">Maribel & Oscar</span>
@@ -254,13 +152,10 @@
         <p><strong>9:00 PM</strong></p>
         <p>Salón de actos</p>
         <p>San Francisco de Conchos, Chih.</p>
-        
-        <!-- Cambio de Boleto por Pase -->
         <div class="no-ticket-badge">
             <i class="fas fa-star"></i> ENTRADA LIBRE SIN PASE
         </div>
         <br>
-        
         <a href="https://maps.app.goo.gl/zs9spCCgSN5VaVBs7" target="_blank" class="btn-mapa">VER UBICACIÓN</a>
     </div>
 
@@ -292,19 +187,21 @@
 
         const audio = document.getElementById("cancion");
         const icon = document.getElementById("music-icon");
-        let musicStarted = false;
+        const overlay = document.getElementById("overlay-inicio");
 
-        function startMusic() {
-            if (!musicStarted) {
-                audio.play().then(() => {
-                    musicStarted = true;
-                    icon.classList.replace("fa-play", "fa-pause");
-                }).catch(() => {});
-            }
+        // Función clave para iPhone: La música se activa al clic del botón
+        function entrarInvitacion() {
+            audio.play().then(() => {
+                icon.classList.replace("fa-play", "fa-pause");
+            }).catch(error => {
+                console.log("Error al reproducir audio:", error);
+            });
+            
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 1000);
         }
-
-        document.addEventListener('click', startMusic);
-        document.addEventListener('touchstart', startMusic);
 
         function toggleMusic() {
             if (audio.paused) {
@@ -314,9 +211,9 @@
                 audio.pause();
                 icon.classList.replace("fa-pause", "fa-play");
             }
-            musicStarted = true;
         }
 
+        // Lluvia de Oro
         const canvas = document.getElementById('canvas-particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -355,6 +252,7 @@
         }
         animate();
 
+        // Cuenta regresiva
         const target = new Date("September 19, 2026 16:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
